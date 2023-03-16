@@ -20,13 +20,13 @@ func NewRateLimiter(
 	config config.RateLimitConfig,
 	storage keyvalue.Storage,
 ) (*RateLimiter, error) {
-	rateLimiter, err := policy.GetPolicy(policyName, config, storage)
+	limiterPolicy, err := policy.GetPolicy(policyName, config, storage)
 	if err != nil {
 		return nil, err
 	}
 
 	return &RateLimiter{
-		policy: rateLimiter,
+		policy: limiterPolicy,
 		config: config,
 	}, nil
 }
